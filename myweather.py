@@ -1,31 +1,31 @@
 # +--------------------------------------------------------+
-# |                                                        |
 # | Get the weather for my home weather station.           |
 # | Written by: Brad Buskey                                |
 # | Written in: Python 3                                   |
 # | Contact: deckyon@gmail.com                             |
-# |                                                        |
 # +--------------------------------------------------------+
 
 #! python
 
 # Lets import some required libraries that will be used to gather and display the information.
 import urllib
-from urllib.request import urlopen
 import json
 
 # Get and load the weather data from my house weather station.
-weatherdata = urllib.request.urlopen("http://api.wunderground.com/api/<Use Your API Key Here>/conditions/q/pws:<Get Your Location Code from WeatherUnderground>.json")
-weatherinfo = json.loads(weatherdata.read())
+weatherdata = urllib.urlopen("http://api.wunderground.com/api/c8659b546235193f/conditions/q/pws:KKYLOUIS68.json")
+weathertemp = weatherdata.read()
+weatherinfo = json.loads(weathertemp.decode())
+
 
 # This gets the data regarding the sun and moon phases and rises/sets.
-astrodata = urllib.request.urlopen("http://api.wunderground.com/api/<Use Your API Key Here>/astronomy/q/pws:<Get Your Location Code from WeatherUnderground>.json")
-astroinfo = json.loads(astrodata.read())
+astrodata = urllib.urlopen("http://api.wunderground.com/api/c8659b546235193f/astronomy/q/pws:KKYLOUIS68.json")
+astrotemp = astrodata.read()
+astroinfo = json.loads(astrotemp.decode())
 
 # Get information on any active alerts in the area.
-alertdata = urllib.request.urlopen("http://api.wunderground.com/api/<Use Your API Key Here>/alerts/q/pws:<Get Your Location Code from WeatherUnderground>.json")
-alertinfo = json.loads(alertdata.read())
-
+alertdata = urllib.urlopen("http://api.wunderground.com/api/c8659b546235193f/alerts/q/pws:KKYLOUIS68.json")
+alerttemp = alertdata.read()
+alertinfo = json.loads(alerttemp.decode())
 
 # Here we start to display the different information gathered from the above three URLS.
 print ("+-----------------------------------------------------------------------------+")
@@ -66,11 +66,6 @@ if 'type' in alertinfo:
 	print ("| Message         : " + alertinfo['alerts']['message'])
 else:
 	print ("| No weather alerts or special notices for this region at this time.")
-print ("+-----------------------------------------------------------------------------+")
-print ()
-
-# Prompt to hit Enter to exit the script.
-wait = input("Press the 'Enter' key to exit.")
-
-# And lets go ahead and exit the script.
-exit()
+	print ("+-----------------------------------------------------------------------------+")
+	print ("|                        Weather Information complete.                        |")
+	print ("+-----------------------------------------------------------------------------+")
