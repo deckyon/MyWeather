@@ -1,7 +1,7 @@
 # +--------------------------------------------------------+
 # | Get the weather for my home weather station.           |
 # | Written by: Brad Buskey                                |
-# | Written in: Python 3                                   |
+# | Written in: Python 2                                   |
 # | Contact: deckyon@gmail.com                             |
 # +--------------------------------------------------------+
 
